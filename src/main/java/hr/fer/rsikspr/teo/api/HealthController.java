@@ -8,12 +8,11 @@ import java.lang.String;
 
 
 @RestController
-@RequestMapping("api/health")
 
 public class HealthController {
 
-	//@RequestMapping(method = RequestMethod.GET)
-	@GetMapping
+	@RequestMapping(method = RequestMethod.GET, value="health")
+	//@GetMapping
     public String Health() {
     	return "OK";
     }
