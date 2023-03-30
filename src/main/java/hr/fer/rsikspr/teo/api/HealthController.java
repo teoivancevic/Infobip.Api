@@ -14,7 +14,7 @@ public class HealthController {
 
 	//@RequestMapping(method = RequestMethod.GET)
 	@GetMapping
-    public String getHealth() {
+    public String Health() {
     	return "OK";
     }
     
