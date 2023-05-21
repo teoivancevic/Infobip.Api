@@ -15,15 +15,20 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@SpringBootApplication()
+
 //@ComponentScan(basePackages = "hr.fer.rsikspr.teo.api.repositories")
 //@EnableJpaRepositories("hr.fer.rsikspr.teo.api.repositories")
 //@EnableTransactionManagement
 //@EntityScan("hr.fer.rsikspr.teo.api.entities.User")
+
+@SpringBootApplication()
 public class ApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiApplication.class, args);
 	}
 
+	
+	
+	
 }

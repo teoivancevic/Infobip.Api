@@ -10,6 +10,7 @@ public class SwaggerUIConfig implements WebMvcConfigurer {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/swagger-ui/**")
-        .addResourceLocations("classpath:/META-INF/resources/webjars/swagger-ui/3.46.0/"); // Update with the appropriate version of Swagger UI
+        .addResourceLocations("classpath:/META-INF/resources/webjars/swagger-ui/"); // Update with the appropriate version of Swagger UI
   }
+  
 }
