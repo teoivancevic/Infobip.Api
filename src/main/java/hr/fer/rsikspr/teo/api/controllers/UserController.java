@@ -1,16 +1,21 @@
 package hr.fer.rsikspr.teo.api.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.rsikspr.teo.api.entities.User;
 import hr.fer.rsikspr.teo.api.services.UserService;
+import org.springframework.web.bind.annotation.RequestBody; // vazno
 
 
 
@@ -35,4 +40,16 @@ public class UserController {
     	return userService.getUserById(id)
     			.orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
     }
+	
+	@PostMapping("")
+	public ResponseEntity<User> createUser(@RequestBody User user) {
+		User createdUser = userService.createUser(user);
+		
+		return ResponseEntity.ok(createdUser);
+	}
+	
+	@DeleteMapping("/{id}")
+	public Optional<User> deleteUser(@PathVariable Long id) {
+		return userService.deleteUser(id);
+	}
 }
