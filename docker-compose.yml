@@ -5,7 +5,28 @@ services:
     container_name: some-postgres
     ports:
       - 5432:5432
+    networks:
+      - backend
     environment:
       POSTGRES_DB: 'postgres'
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'mysecretpassword'
+
+  infobip-api:
+    container_name: infobip-api
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: infobip-api:latest
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    depends_on:
+      - postgres-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server/postgres
+
+networks:
+  backend:
+    driver: bridge
