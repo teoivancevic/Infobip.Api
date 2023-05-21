@@ -8,27 +8,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 
 
-
-//@ComponentScan(basePackages = "hr.fer.rsikspr.teo.api.repositories")
-//@EnableJpaRepositories("hr.fer.rsikspr.teo.api.repositories")
-//@EnableTransactionManagement
-//@EntityScan("hr.fer.rsikspr.teo.api.entities.User")
-
-@SpringBootApplication()
+@SpringBootApplication
+@OpenAPIDefinition
 public class ApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiApplication.class, args);
 	}
 
-	
-	
-	
 }
