@@ -1,4 +1,4 @@
-package hr.fer.rsikspr.teo.api.controllers;
+package hr.fer.rsikspr.teo.api.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import hr.fer.rsikspr.teo.api.entities.User;
-import hr.fer.rsikspr.teo.api.services.UserService;
+import hr.fer.rsikspr.teo.api.model.User;
+import hr.fer.rsikspr.teo.api.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.RequestBody; // vazno
 
 
 
 @RestController
+@Tag(name="/users", description="Users")
 @RequestMapping("/users")
 public class UserController {
 	
