@@ -32,9 +32,8 @@ public class MessageV2 {
 	private String to;
 	
 	
-	
 	//@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "content_id", referencedColumnName = "id")
     private Content content;
 	

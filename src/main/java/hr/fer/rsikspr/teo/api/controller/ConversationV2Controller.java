@@ -19,6 +19,7 @@ import hr.fer.rsikspr.teo.api.model.ConversationV2;
 import hr.fer.rsikspr.teo.api.service.ConversationV1Service;
 import hr.fer.rsikspr.teo.api.service.ConversationV2Service;
 import hr.fer.rsikspr.teo.api.service.MessageServiceV1;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -35,26 +36,31 @@ public class ConversationV2Controller {
 	}
 	
 	@GetMapping("")
+	@Operation(summary = "Gets all conversations from database")
 	public ResponseEntity<List<ConversationV2>> getAllConversations(){
 		return ResponseEntity.ok(conversationService.getAllConversations());
 	}
 	
 	@GetMapping("id")
+	@Operation(summary = "Gets conversation by id")
 	public ResponseEntity<Optional<ConversationV2>> getConversationById(@RequestParam("id") long id){
 		return ResponseEntity.ok(conversationService.getConversationById(id));
 	}
 	
 	@GetMapping("user/all")
+	@Operation(summary = "Gets all conversations which include given user")
 	public ResponseEntity<List<ConversationV2>> getConversationsByUser(@RequestParam("name") String name){
 		return ResponseEntity.ok(conversationService.getConversationsByUser(name));
 	}
 	
 	@GetMapping("user/active")
+	@Operation(summary = "Gets active conversation for given user")
 	public ResponseEntity<ConversationV2> getActiveConversationByUser(@RequestParam("name") String name){
 		return ResponseEntity.ok(conversationService.getActiveConversationByUser(name));
 	}
 	
 	@PutMapping("close/id")
+	@Operation(summary = "Closes active conversation by id")
 	public ResponseEntity<Void> closeConversationById(@RequestParam("id") long id){
 		
 		boolean result = conversationService.closeConversationById(id);
@@ -67,6 +73,7 @@ public class ConversationV2Controller {
 	}
 	
 	@PutMapping("close/name")
+	@Operation(summary = "Closes active conversation for given user")
 	public ResponseEntity<Void> closeConversation(@RequestParam("name") String name){
 		boolean result = conversationService.closeConversationForUser(name);
 		
@@ -78,6 +85,7 @@ public class ConversationV2Controller {
 	}
 	
 	@GetMapping("/time-range")
+	@Operation(summary = "Closes all conversations in given time range. Format: yyyy-MM-DD'T'HH:mm:ss:SSSXXX")
 	public ResponseEntity<List<ConversationV2>> getConversationsInTimeRange(
 	        @RequestParam("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
 	        @RequestParam("endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
