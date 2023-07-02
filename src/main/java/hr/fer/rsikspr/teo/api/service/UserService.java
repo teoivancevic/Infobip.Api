@@ -1,4 +1,4 @@
-package hr.fer.rsikspr.teo.api.services;
+package hr.fer.rsikspr.teo.api.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hr.fer.rsikspr.teo.api.repositories.UserRepository;
-import hr.fer.rsikspr.teo.api.entities.User;
+import hr.fer.rsikspr.teo.api.model.User;
+import hr.fer.rsikspr.teo.api.repository.UserRepository;
 
 @Service
 public class UserService {

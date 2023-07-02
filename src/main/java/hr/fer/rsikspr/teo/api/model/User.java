@@ -1,4 +1,4 @@
-package hr.fer.rsikspr.teo.api.entities;
+package hr.fer.rsikspr.teo.api.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
