@@ -16,7 +16,7 @@ import hr.fer.rsikspr.teo.api.service.MessageServiceV2;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
-@RestController
+//@RestController
 @Tag(name="/messages/v2", description="Messages V2 implementation")
 @RequestMapping("/messages/v2")  // Base URL for all message-related endpoints
 public class MessageV2Controller {
