@@ -11,12 +11,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.AssertFalse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "messagev1", schema = "public")
-public class MessageV1 extends Message{
+public class MessageV1 {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,6 +101,12 @@ public class MessageV1 extends Message{
 	public void setConversation(ConversationV1 conversation) {
 		this.conversation = conversation;
 	}
+	
+	
+	@AssertFalse(message = "Fields cannot have the same value")
+    private boolean isFromEqualToTo() {
+        return from != null && to != null && from.equals(to);
+    }
 	
 	
 	

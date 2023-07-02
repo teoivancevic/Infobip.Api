@@ -7,42 +7,43 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import hr.fer.rsikspr.teo.api.model.ConversationV1;
+import hr.fer.rsikspr.teo.api.model.ConversationV2;
 import hr.fer.rsikspr.teo.api.model.MessageV1;
 import hr.fer.rsikspr.teo.api.repository.ConversationV1Repository;
+import hr.fer.rsikspr.teo.api.repository.ConversationV2Repository;
 import hr.fer.rsikspr.teo.api.repository.MessageRepositoryV1;
 
 @Service
-public class ConversationV1Service {
+public class ConversationV2Service {
 	
-	private final ConversationV1Repository conversationRepository;
+	private final ConversationV2Repository conversationRepository;
 
-    public ConversationV1Service(ConversationV1Repository conversationRepository) {
+    public ConversationV2Service(ConversationV2Repository conversationRepository) {
 		super();
 		this.conversationRepository = conversationRepository;
 	}
     
-    public List<ConversationV1> getAllConversations(){
+    public List<ConversationV2> getAllConversations(){
     	return conversationRepository.findAll();
     }
     
-    public Optional<ConversationV1> getConversationById(long id) {
+    public Optional<ConversationV2> getConversationById(long id) {
     	return conversationRepository.findById(id);
     }
     
-    public List<ConversationV1> getConversationsByParticipants(String part1, String part2) {
+    public List<ConversationV2> getConversationsByParticipants(String part1, String part2) {
     	return conversationRepository.findByParticipants(part1, part2);
     }
     
-    public List<ConversationV1> getConversationsByUser(String name){
+    public List<ConversationV2> getConversationsByUser(String name){
     	return conversationRepository.findByUser(name);
     }
     
-    public ConversationV1 getActiveConversationByUser(String name){
-    	List<ConversationV1> conversations = conversationRepository.findByUser(name);
-    	List<ConversationV1> activeConversations = conversations.stream().filter(c -> c.getEndTime() == null).collect(Collectors.toList());
+    public ConversationV2 getActiveConversationByUser(String name){
+    	List<ConversationV2> conversations = conversationRepository.findByUser(name);
+    	List<ConversationV2> activeConversations = conversations.stream().filter(c -> c.getEndTime() == null).collect(Collectors.toList());
     	
     	if(activeConversations != null && activeConversations.size() > 0) {
     		return activeConversations.get(0);
@@ -52,13 +53,13 @@ public class ConversationV1Service {
     	
 	}
 	
-	public ConversationV1 createConversation(ConversationV1 conv) {
+	public ConversationV2 createConversation(ConversationV2 conv) {
     	return conversationRepository.save(conv);
     }
 	
 	public boolean closeConversationById(long id) {
-		Optional<ConversationV1> convv = conversationRepository.findById(id);
-		ConversationV1 conv = convv.get();
+		Optional<ConversationV2> convv = conversationRepository.findById(id);
+		ConversationV2 conv = convv.get();
 		
 		if(conv != null) {
 			conv.setEndTime(LocalDateTime.now());
@@ -70,7 +71,7 @@ public class ConversationV1Service {
 	}
 	
 	public boolean closeConversationForUser(String name) {
-		ConversationV1 conv = getActiveConversationByUser(name);
+		ConversationV2 conv = getActiveConversationByUser(name);
 		
 		if(conv != null) {
 			conv.setEndTime(LocalDateTime.now());
@@ -81,8 +82,8 @@ public class ConversationV1Service {
 		return false; // no active conv
 	}
 	
-	
-	public List<ConversationV1> getConversationsInTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+	public List<ConversationV2> getConversationsInTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
         return conversationRepository.findByStartTimeBetween(startTime, endTime);
     }
+	
 }

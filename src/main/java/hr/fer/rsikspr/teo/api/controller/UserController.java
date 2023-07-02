@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody; // vazno
 
 
 
-@RestController
+//@RestController
 @Tag(name="/users", description="Users")
 @RequestMapping("/users")
 public class UserController {

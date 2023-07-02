@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestBody; // JAKO VAZNO DA JE 
 import jakarta.validation.Valid;
 
 @RestController
-@Tag(name="/messages/v1", description="Messages V1 implementation")
-@RequestMapping("/messages/v1")  // Base URL for all message-related endpoints
+@Tag(name="/v1/messages", description="Messages V1 implementation")
+@RequestMapping("/v1/messages")  // Base URL for all message-related endpoints
 public class MessageV1Controller {
   
 	private final MessageServiceV1 messageServiceV1;
@@ -40,7 +40,7 @@ public class MessageV1Controller {
 	}
 
 	
-	@GetMapping("")  // Endpoint for loading messages in version 1
+	//@GetMapping("")  // Endpoint for loading messages in version 1
     public ResponseEntity<List<MessageV1>> getMessagesV1() {
 		List<MessageV1> messages = messageServiceV1.getAllMessages();
         return ResponseEntity.ok(messages);
@@ -53,11 +53,5 @@ public class MessageV1Controller {
 		MessageV1 newMessage = messageServiceV1.createMessage(message);
         return ResponseEntity.ok(newMessage);
     }
-	
-	
-	
-	
-	
-  
 
 }

@@ -17,12 +17,26 @@ public class Content {
 	
 	@Column(nullable = false)
     private String text;
+	
+	public Content(String text) {
+		super();
+		this.text = text;
+	}
+	
+	public Content() {
+		
+	}
+	
+	public Content(NewContent cont) {
+		super();
+		this.text = cont.getText();
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	private void setId(Long id) {
 		this.id = id;
 	}
 

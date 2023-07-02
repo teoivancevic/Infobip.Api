@@ -1,5 +1,6 @@
 package hr.fer.rsikspr.teo.api.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,7 @@ public interface ConversationV1Repository extends JpaRepository<ConversationV1, 
 	
 	@Query("SELECT c FROM ConversationV1 c WHERE (c.participant1 = :name OR c.participant2 = :name)")
     List<ConversationV1> findByUser(String name);
+	
+    List<ConversationV1> findByStartTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
+
 }
